@@ -29,12 +29,20 @@ module Stealth
           @messagebird_client.enable_feature(MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE)
         end
 
+        # def transmit
+        #   # Don't transmit anything for delays
+        #   return true if reply.blank?
+
+        #   response = twilio_client.messages.create(reply)
+        #   Stealth::Logger.l(topic: "twilio", message: "Transmitting. Response: #{response.status}: #{response.error_message}")
+        # end
+
         def transmit
           # Don't transmit anything for delays
           return true if reply.blank?
 
-          response = twilio_client.messages.create(reply)
-          Stealth::Logger.l(topic: "twilio", message: "Transmitting. Response: #{response.status}: #{response.error_message}")
+          response = messagebird_client.message_create(reply)
+          Stealth::Logger.l(topic: "messagebird", message: "Transmitting. Response: #{response.status}: #{response.error_message}")
         end
 
       end
