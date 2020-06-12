@@ -4,16 +4,16 @@ version = File.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
 
 Gem::Specification.new do |s|
   s.name = 'stealth-messagebird'
-  s.summary = 'Stealth Twilio SMS driver'
-  s.description = 'Twilio SMS driver for Stealth.'
+  s.summary = 'Stealth MessageBird Whatsapp driver'
+  s.description = 'MessageBird Whatsapp driver for Stealth.'
   s.homepage = 'https://github.com/hellostealth/stealth-twilio'
   s.licenses = ['MIT']
   s.version = version
-  s.author = 'Mauricio Gomes'
-  s.email = 'mauricio@edge14.com'
+  s.author = 'Emilie Morissette'
+  s.email = 'emorissettegregoire@gmail.com'
 
   s.add_dependency 'stealth', '~> 2.0'
-  s.add_dependency 'twilio-ruby', '~> 5.5'
+  s.add_dependency 'messagebird-rest'
 
   s.add_development_dependency 'rspec', '~> 3.6'
   s.add_development_dependency 'rspec_junit_formatter', '~> 0.3'
