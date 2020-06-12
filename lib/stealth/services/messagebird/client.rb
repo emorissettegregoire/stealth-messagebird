@@ -13,7 +13,7 @@ module Stealth
 
       class Client < Stealth::Services::BaseClient
 
-        attr_reader :twilio_client, :reply
+        attr_reader :messagebird_client, :reply
 
         # def initialize(reply:)
         #   @reply = reply
