@@ -1,11 +1,11 @@
 # coding: utf-8
 # frozen_string_literal: true
 
-require 'twilio-ruby'
+require 'messagebird'
 
-require 'stealth/services/twilio/message_handler'
-require 'stealth/services/twilio/reply_handler'
-require 'stealth/services/twilio/setup'
+require 'stealth/services/messagebird/message_handler'
+require 'stealth/services/messagebird/reply_handler'
+require 'stealth/services/messagebird/setup'
 
 module Stealth
   module Services

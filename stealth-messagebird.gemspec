@@ -3,7 +3,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 version = File.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
 
 Gem::Specification.new do |s|
-  s.name = 'stealth-twilio'
+  s.name = 'stealth-messagebird'
   s.summary = 'Stealth Twilio SMS driver'
   s.description = 'Twilio SMS driver for Stealth.'
   s.homepage = 'https://github.com/hellostealth/stealth-twilio'
