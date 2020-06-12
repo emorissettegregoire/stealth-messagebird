@@ -15,11 +15,18 @@ module Stealth
 
         attr_reader :twilio_client, :reply
 
+        # def initialize(reply:)
+        #   @reply = reply
+        #   account_sid = Stealth.config.twilio.account_sid
+        #   auth_token = Stealth.config.twilio.auth_token
+        #   @twilio_client = ::Twilio::REST::Client.new(account_sid, auth_token)
+        # end
+
         def initialize(reply:)
           @reply = reply
-          account_sid = Stealth.config.twilio.account_sid
-          auth_token = Stealth.config.twilio.auth_token
-          @twilio_client = ::Twilio::REST::Client.new(account_sid, auth_token)
+          access_key = Stealth.config.messagebird.access_key
+          @messagebird_client = ::MessageBird::Client.new(access_key)
+          @messagebird_client.enable_feature(MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE)
         end
 
         def transmit
