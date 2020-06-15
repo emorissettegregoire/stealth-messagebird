@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name = 'stealth-messagebird'
   s.summary = 'Stealth MessageBird Whatsapp driver'
   s.description = 'MessageBird Whatsapp driver for Stealth.'
-  s.homepage = 'https://github.com/hellostealth/stealth-twilio'
+  s.homepage = 'https://github.com/emorissettegregoire/stealth-messagebird'
   s.licenses = ['MIT']
   s.version = version
   s.author = 'Emilie Morissette'
