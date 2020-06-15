@@ -2,7 +2,7 @@
 
 module Stealth
   module Services
-    module Twilio
+    module MessageBird
       module Version
         def self.version
           File.read(File.join(File.dirname(__FILE__), '..', '..', '..', '..', 'VERSION')).strip

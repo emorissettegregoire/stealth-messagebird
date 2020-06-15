@@ -4,13 +4,13 @@ require 'stealth/services/messagebird/client'
 
 module Stealth
   module Services
-    module Twilio
+    module MessageBird
 
       class Setup
 
         class << self
           def trigger
-            Stealth::Logger.l(topic: "twilio", message: "There is no setup needed!")
+            Stealth::Logger.l(topic: "messagebird", message: "There is no setup needed!")
           end
         end
 

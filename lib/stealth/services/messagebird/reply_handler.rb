@@ -2,7 +2,7 @@
 
 module Stealth
   module Services
-    module Twilio
+    module MessageBird
 
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 

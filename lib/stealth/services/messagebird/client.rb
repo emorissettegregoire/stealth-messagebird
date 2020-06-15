@@ -8,7 +8,7 @@ require 'stealth/services/messagebird/setup'
 
 module Stealth
   module Services
-    module Twilio
+    module MessageBird
 
       class Client < Stealth::Services::BaseClient
 
