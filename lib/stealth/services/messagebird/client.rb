@@ -25,7 +25,9 @@ module Stealth
           @reply = reply
           access_key = Stealth.config.messagebird.access_key
           @messagebird_client = ::MessageBird::Client.new(access_key)
-          @messagebird_client.enable_feature(MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE)
+          @messagebird_client.enable_feature(
+            MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
+          )
         end
 
         # def transmit
@@ -39,9 +41,14 @@ module Stealth
         def transmit
           # Don't transmit anything for delays
           return true if reply.blank?
-
           response = messagebird_client.message_create(reply)
-          Stealth::Logger.l(topic: "messagebird", message: "Transmitting. Response: #{response.status}: #{response.error_message}")
+
+          Stealth::Logger.l(
+            topic: "messagebird",
+            message:
+              "Transmitting. Response: #{response.status}: " \
+                "#{response.error_message}"
+          )
         end
 
       end
