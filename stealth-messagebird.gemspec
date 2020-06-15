@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email = 'emorissettegregoire@gmail.com'
 
   s.add_dependency 'stealth', '~> 2.0'
-  s.add_dependency 'messagebird-rest'
+  s.add_dependency 'messagebird-rest', '~> 1.18.0'
 
   s.add_development_dependency 'rspec', '~> 3.6'
   s.add_development_dependency 'rspec_junit_formatter', '~> 0.3'
