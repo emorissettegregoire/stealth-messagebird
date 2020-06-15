@@ -1,17 +1,16 @@
-# coding: utf-8
 # frozen_string_literal: true
 
-require 'stealth/services/twilio/client'
+require 'stealth/services/messagebird/client'
 
 module Stealth
   module Services
-    module Twilio
+    module MessageBird
 
       class Setup
 
         class << self
           def trigger
-            Stealth::Logger.l(topic: "twilio", message: "There is no setup needed!")
+            Stealth::Logger.l(topic: "messagebird", message: "There is no setup needed!")
           end
         end
 

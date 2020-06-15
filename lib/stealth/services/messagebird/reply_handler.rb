@@ -1,9 +1,8 @@
-# coding: utf-8
 # frozen_string_literal: true
 
 module Stealth
   module Services
-    module Twilio
+    module MessageBird
 
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
