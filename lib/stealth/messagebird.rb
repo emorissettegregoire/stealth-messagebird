@@ -1,2 +1,2 @@
-require 'stealth/services/messagebird/version'
-require 'stealth/services/messagebird/client'
+require 'stealth/services/message_bird/version'
+require 'stealth/services/message_bird/client'

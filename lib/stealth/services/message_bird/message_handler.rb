@@ -13,7 +13,7 @@ module Stealth
 
         def coordinate
           Stealth::Services::HandleMessageJob.perform_async(
-            'messagebird',
+            'message_bird',
             params,
             headers
           )
