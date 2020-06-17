@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'stealth/services/message_bird/client'
+require 'stealth/services/messagebird/client'
 
 module Stealth
   module Services
