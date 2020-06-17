@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.author = 'Emilie Morissette'
   s.email = 'emorissettegregoire@gmail.com'
 
-  s.add_dependency 'stealth', '~> 1.1.6'
+  s.add_dependency 'stealth', '~> 2.0'
   s.add_dependency 'messagebird-rest', '~> 1.4.0'
 
   s.add_development_dependency 'rspec', '~> 3.6'
