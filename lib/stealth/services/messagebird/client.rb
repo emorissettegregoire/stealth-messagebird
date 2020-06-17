@@ -2,13 +2,13 @@
 
 require 'messagebird'
 
-require 'stealth/services/message_bird/message_handler'
-require 'stealth/services/message_bird/reply_handler'
-require 'stealth/services/message_bird/setup'
+require 'stealth/services/messagebird/message_handler'
+require 'stealth/services/messagebird/reply_handler'
+require 'stealth/services/messagebird/setup'
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
 
       class Client < Stealth::Services::BaseClient
 
@@ -44,7 +44,7 @@ module Stealth
           response = messagebird_client.message_create(reply)
 
           Stealth::Logger.l(
-            topic: "message_bird",
+            topic: "messagebird",
             message:
               "Transmitting. Response: #{response.status}: " \
                 "#{response.error_message}"

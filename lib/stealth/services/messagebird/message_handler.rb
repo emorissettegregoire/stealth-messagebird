@@ -2,7 +2,7 @@
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
       class MessageHandler < Stealth::Services::BaseMessageHandler
         attr_reader :service_message, :params, :headers
 
@@ -13,7 +13,7 @@ module Stealth
 
         def coordinate
           Stealth::Services::HandleMessageJob.perform_async(
-            'message_bird',
+            'messagebird',
             params,
             headers
           )
@@ -23,7 +23,7 @@ module Stealth
         end
 
         def process
-          @service_message = ServiceMessage.new(service: 'message_bird')
+          @service_message = ServiceMessage.new(service: 'messagebird')
           service_message.sender_id = params['From']
           service_message.message = params['Body']
 

@@ -1,1 +1,1 @@
-require 'stealth/message_bird'
+require 'stealth/messagebird'

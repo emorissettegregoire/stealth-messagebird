@@ -2,7 +2,7 @@
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
 
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
