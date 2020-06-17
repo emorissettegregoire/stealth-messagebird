@@ -2,7 +2,7 @@
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
 
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
@@ -55,10 +55,10 @@ module Stealth
             end
           end
 
-          def format_response(response)
-            sender_info = { from: Stealth.config.twilio.from_phone, to: recipient_id }
-            response.merge(sender_info)
-          end
+          # def format_response(response)
+          #   sender_info = { from: Stealth.config.messagebird.from_phone, to: recipient_id }
+          #   response.merge(sender_info)
+          # end
 
       end
 

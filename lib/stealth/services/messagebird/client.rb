@@ -8,7 +8,7 @@ require 'stealth/services/messagebird/setup'
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
 
       class Client < Stealth::Services::BaseClient
 
@@ -24,7 +24,7 @@ module Stealth
         def initialize(reply:)
           @reply = reply
           access_key = Stealth.config.messagebird.access_key
-          @messagebird_client = ::MessageBird::Client.new(access_key)
+          @messagebird_client = MessageBird::Client.new(access_key)
           @messagebird_client.enable_feature(
             MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
           )

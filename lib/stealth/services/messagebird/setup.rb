@@ -4,7 +4,7 @@ require 'stealth/services/messagebird/client'
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
 
       class Setup
 

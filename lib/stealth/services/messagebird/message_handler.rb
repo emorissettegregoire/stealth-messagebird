@@ -2,7 +2,7 @@
 
 module Stealth
   module Services
-    module MessageBird
+    module Messagebird
       class MessageHandler < Stealth::Services::BaseMessageHandler
         attr_reader :service_message, :params, :headers
 
