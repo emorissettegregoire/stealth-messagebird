@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "pry"
 
 module Stealth
   module Services
@@ -7,7 +8,6 @@ module Stealth
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
         attr_reader :recipient_id, :reply
-
         def initialize(recipient_id: nil, reply: nil)
           @recipient_id = recipient_id
           @reply = reply

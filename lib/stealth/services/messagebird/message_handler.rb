@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "pry"
 
 module Stealth
   module Services
@@ -24,10 +25,15 @@ module Stealth
 
         def process
           @service_message = ServiceMessage.new(service: 'messagebird')
-          service_message.sender_id = params['From']
-          service_message.message = params['Body']
+          # service_message.sender_id = params['From']
+          service_message.sender_id = params["contact"]["msisdn"]
+
+          # service_message.message = params['Body']
+          service_message.message = params["message"]["content"]["text"]
 
           # Check for media attachments
+
+          #### Need to be changed for messagebird params
           attachment_count = params['NumMedia'].to_i
 
           attachment_count.times do |i|
@@ -36,7 +42,6 @@ module Stealth
               url: params["MediaUrl#{i}"]
             }
           end
-
           service_message
         end
 

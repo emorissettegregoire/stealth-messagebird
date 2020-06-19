@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'pry'
 
 require 'messagebird'
 
@@ -41,7 +42,12 @@ module Stealth
         def transmit
           # Don't transmit anything for delays
           return true if reply.blank?
-          response = messagebird_client.message_create(reply)
+          # response = messagebird_client.message_create(reply)
+          # response = messagebird_client.message_create(reply)
+          # response = messagebird_client.messages.create(reply)
+
+          # Reply to a conversation
+          response = messagebird_client.conversation_reply(reply)
 
           Stealth::Logger.l(
             topic: "messagebird",
