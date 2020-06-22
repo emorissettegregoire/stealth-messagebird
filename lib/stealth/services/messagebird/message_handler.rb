@@ -28,11 +28,11 @@ module Stealth
           # service_message.sender_id = params['From']
           # service_message.sender_id = params["contact"]["msisdn"]
           service_message.sender_id = params["message"]["from"]
+          # service_message.sender_id = params["contact"]["id"]
 
           # service_message.message = params['Body']
           service_message.message = params["message"]["content"]["text"]
           # Check for media attachments
-
           #### Need to be changed for messagebird params
           attachment_count = params['NumMedia'].to_i
 
