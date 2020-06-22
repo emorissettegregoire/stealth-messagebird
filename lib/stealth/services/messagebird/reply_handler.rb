@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "pry"
 
 module Stealth
   module Services
@@ -7,7 +8,6 @@ module Stealth
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
         attr_reader :recipient_id, :reply
-
         def initialize(recipient_id: nil, reply: nil)
           @recipient_id = recipient_id
           @reply = reply
@@ -53,6 +53,13 @@ module Stealth
             if reply['text'].present? && reply['text'].size > 1600
               raise(ArgumentError, "Text messages must be 1600 characters or less.")
             end
+          end
+
+          def format_response(response)
+            # sender_info = { from: Stealth.config.messagebird.from_phone, to: recipient_id }
+            # sender_info = { from: "+447418310508", to: recipient_id }
+            sender_info = { from: "+447418310508", to: recipient_id }
+            response.merge(sender_info)
           end
 
           # def format_response(response)
