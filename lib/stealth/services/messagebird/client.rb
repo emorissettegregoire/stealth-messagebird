@@ -43,8 +43,7 @@ module Stealth
           # Don't transmit anything for delays
           return true if reply.blank?
           # response = messagebird_client.message_create(reply)
-          response = messagebird_client.message_create("+447418310508", "+261326897912", reply)
-
+          response = messagebird_client.message_create(reply[:from], reply[:to], reply[:body])
           # response = messagebird_client.messages.create(reply)
 
           # Reply to a conversation
