@@ -34,14 +34,14 @@ module Stealth
           service_message.message = params["message"]["content"]["text"]
           # Check for media attachments
           #### Need to be changed for messagebird params
-          attachment_count = params['NumMedia'].to_i
+          # attachment_count = params['NumMedia'].to_i
 
-          attachment_count.times do |i|
-            service_message.attachments << {
-              type: params["MediaContentType#{i}"],
-              url: params["MediaUrl#{i}"]
-            }
-          end
+          # attachment_count.times do |i|
+          #   service_message.attachments << {
+          #     type: params["MediaContentType#{i}"],
+          #     url: params["MediaUrl#{i}"]
+          #   }
+          # end
           service_message
         end
 
