@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require "pry"
+require "json"
 
 module Stealth
   module Services
@@ -15,7 +16,6 @@ module Stealth
 
         def text
           check_text_length
-
           format_response({ body: reply['text'] })
         end
 

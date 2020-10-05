@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'pry'
+require 'json'
 
 require 'messagebird'
 
@@ -52,8 +53,8 @@ module Stealth
           Stealth::Logger.l(
             topic: "messagebird",
             message:
-              "Transmitting. Response: #{response.status}: " \
-                "#{response.error_message}"
+              "Transmitting. Response: #{response.recipients["items"]}: " \
+                # "#{response.errors}"
           )
         end
 

@@ -20,7 +20,7 @@ module Stealth
           )
 
           # Relay our acceptance
-          [204, 'No Content']
+          [200, 'OK']
         end
 
         def process
