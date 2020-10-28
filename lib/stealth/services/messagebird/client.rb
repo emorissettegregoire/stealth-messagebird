@@ -30,6 +30,14 @@ module Stealth
           @messagebird_client.enable_feature(
             MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
           )
+
+          # if api_key.present?
+          #   @twilio_client = ::Twilio::REST::Client.new(
+          #     api_key, auth_token, account_sid
+          #   )
+          # else
+          #   @twilio_client = ::Twilio::REST::Client.new(account_sid, auth_token)
+          # end
         end
 
         # def transmit

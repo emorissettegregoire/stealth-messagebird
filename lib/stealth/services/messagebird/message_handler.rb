@@ -32,6 +32,8 @@ module Stealth
 
           # service_message.message = params['Body']
           service_message.message = params["message"]["content"]["text"]
+          # service_message.timestamp = params["message"]["id"]
+
           # Check for media attachments
           #### Need to be changed for messagebird params
           # attachment_count = params['NumMedia'].to_i
