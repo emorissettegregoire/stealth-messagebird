@@ -18,21 +18,21 @@ module Stealth
             params,
             headers
           )
-
           # Relay our acceptance
           [204, 'No Content']
         end
 
         def process
           @service_message = ServiceMessage.new(service: 'messagebird')
-          # service_message.sender_id = params['From']
-          # service_message.sender_id = params["contact"]["msisdn"]
           service_message.sender_id = params["message"]["from"]
-          # service_message.sender_id = params["contact"]["id"]
 
-          # service_message.message = params['Body']
           service_message.message = params["message"]["content"]["text"]
-          # service_message.timestamp = params["message"]["id"]
+
+          # Do I need the timestamp?
+          # service_message.timestamp = params["message"]["createdDatetime"]
+
+          # It seems that it can not take several attachements for one
+          # message
 
           # Check for media attachments
           #### Need to be changed for messagebird params
@@ -44,6 +44,12 @@ module Stealth
           #     url: params["MediaUrl#{i}"]
           #   }
           # end
+
+          service_message.attachments << {
+            type: params["message"]["type"],
+            url: params["message"]["content"]
+          }
+
           service_message
         end
 
