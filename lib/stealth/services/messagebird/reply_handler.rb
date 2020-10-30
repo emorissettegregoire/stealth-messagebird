@@ -49,24 +49,19 @@ module Stealth
 
         private
 
-          def check_text_length
-            if reply['text'].present? && reply['text'].size > 1600
-              raise(ArgumentError, "Text messages must be 1600 characters or less.")
-            end
+        def check_text_length
+          if reply['text'].present? && reply['text'].size > 1600
+            raise(ArgumentError, "Text messages must be 1600 characters or less.")
           end
+        end
 
-          def format_response(response)
-            sender_info = { from: Stealth.config.messagebird.from_phone.to_s, to: recipient_id }
-            response.merge(sender_info)
-          end
+        def format_response(response)
+          sender_info = { from: Stealth.config.messagebird.from_phone.to_s, to: recipient_id }
 
-          # def format_response(response)
-          #   sender_info = { from: Stealth.config.messagebird.from_phone, to: recipient_id }
-          #   response.merge(sender_info)
-          # end
+          response.merge(sender_info)
+        end
 
       end
-
     end
   end
 end

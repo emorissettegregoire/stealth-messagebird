@@ -16,13 +16,6 @@ module Stealth
 
         attr_reader :messagebird_client, :reply
 
-        # def initialize(reply:)
-        #   @reply = reply
-        #   account_sid = Stealth.config.twilio.account_sid
-        #   auth_token = Stealth.config.twilio.auth_token
-        #   @twilio_client = ::Twilio::REST::Client.new(account_sid, auth_token)
-        # end
-
         def initialize(reply:)
           @reply = reply
           access_key = Stealth.config.messagebird.access_key
@@ -40,19 +33,19 @@ module Stealth
           # end
         end
 
-        # def transmit
-        #   # Don't transmit anything for delays
-        #   return true if reply.blank?
-
-        #   response = twilio_client.messages.create(reply)
-        #   Stealth::Logger.l(topic: "twilio", message: "Transmitting. Response: #{response.status}: #{response.error_message}")
-        # end
-
         def transmit
           # Don't transmit anything for delays
           return true if reply.blank?
-          # response = messagebird_client.message_create(reply)
-          response = messagebird_client.message_create(reply[:from], reply[:to], reply[:body])
+          response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply[:body])
+          # response = messagebird_client.send_conversation_message(reply[:from], reply[:to], type: 'text', content: {text: 'yo testing'})
+
+          # channel_id = '619747f69cf940a98fb443140ce9aed2'
+          # to = '927832329'
+          # client = MessageBird::Client.new('YOUR_ACCESS_KEY')
+          # message = client.send_conversation_message(channel_id, to, type: 'text', content: { text: 'Hello!' })
+
+
+          # response = messagebird_client.message_create(reply[:from], reply[:to], reply[:body])
           # response = messagebird_client.messages.create(reply)
 
           # Reply to a conversation
@@ -65,9 +58,7 @@ module Stealth
                 # "#{response.errors}"
           )
         end
-
       end
-
     end
   end
 end
