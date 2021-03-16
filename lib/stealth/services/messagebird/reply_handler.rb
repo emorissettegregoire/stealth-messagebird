@@ -16,7 +16,8 @@ module Stealth
 
         def text
           check_text_length
-          format_response({ body: reply['text'] })
+          # format_response({ body: reply['text'] })
+          format_response({ body: { type: "text", content: { text: reply["text"] }}})
         end
 
         def image

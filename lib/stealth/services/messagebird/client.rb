@@ -36,6 +36,9 @@ module Stealth
         def transmit
           # Don't transmit anything for delays
           return true if reply.blank?
+          # response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply[:body])
+          # messagebird_client.start_conversation(reply[:to], reply[:from])
+          # response = messagebird_client.send_conversation_message("d5756b9c208f4e32a6a4232b54affcb4", "+261326897912", type: 'text', content: { text: 'Hello!' })
           response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply[:body])
           # response = messagebird_client.send_conversation_message(reply[:from], reply[:to], type: 'text', content: {text: 'yo testing'})
 
