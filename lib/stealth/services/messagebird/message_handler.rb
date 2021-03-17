@@ -23,9 +23,11 @@ module Stealth
         end
 
         def process
+          binding.pry
           @service_message = ServiceMessage.new(service: 'messagebird')
           # service_message.sender_id = params["message"]["from"]
           service_message.sender_id = params["message"]["conversationId"]
+          # service_message.sender_id = params["conversation"]["contactId"]
 
           service_message.message = params["message"]["content"]["text"]
 
