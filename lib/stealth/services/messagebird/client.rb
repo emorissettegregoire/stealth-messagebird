@@ -20,7 +20,6 @@ module Stealth
           @reply = reply
           access_key = Stealth.config.messagebird.access_key
           @messagebird_client = MessageBird::Client.new(access_key)
-          binding.pry
           # @messagebird_client.enable_feature(
           #   MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
           # )
@@ -37,27 +36,39 @@ module Stealth
         def transmit
           # Don't transmit anything for delays
           return true if reply.blank?
-          # response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply[:body])
-          # messagebird_client.start_conversation(reply[:to], reply[:from])
-          # response = messagebird_client.send_conversation_message("d5756b9c208f4e32a6a4232b54affcb4", "+261326897912", type: 'text', content: { text: 'Hello!' })
-          response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply[:body])
-          # response = messagebird_client.send_conversation_message(reply[:from], reply[:to], type: 'text', content: {text: 'yo testing'})
 
-          # channel_id = '619747f69cf940a98fb443140ce9aed2'
-          # to = '927832329'
-          # client = MessageBird::Client.new('YOUR_ACCESS_KEY')
-          # message = client.send_conversation_message(channel_id, to, type: 'text', content: { text: 'Hello!' })
-
-          # response = messagebird_client.message_create(reply[:from], reply[:to], reply[:body])
-          # response = messagebird_client.messages.create(reply)
-
+          response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply)
           # Reply to a conversation
           # response = messagebird_client.conversation_reply(reply)
+
+          # EXAMPLE OF ERROR MESSAGES IN TWILIO - NEED TO ADJUST FOR MESSAGEBIRD
+          # begin
+          #   response = twilio_client.messages.create(reply)
+          # rescue ::Twilio::REST::RestError => e
+          #   case e.message
+          #   when /21610/ # Attempt to send to unsubscribed recipient
+          #     raise Stealth::Errors::UserOptOut
+          #   when /21612/ # 'To' phone number is not currently reachable via SMS
+          #     raise Stealth::Errors::UserOptOut
+          #   when /21614/ # 'To' number is not a valid mobile number
+          #     raise Stealth::Errors::UserOptOut
+          #   when /30004/ # Message blocked
+          #     raise Stealth::Errors::UserOptOut
+          #   when /21211/ # Invalid 'To' Phone Number
+          #     raise Stealth::Errors::InvalidSessionID
+          #   when /30003/ # Unreachable destination handset
+          #     raise Stealth::Errors::InvalidSessionID
+          #   when /30005/ # Unknown destination handset
+          #     raise Stealth::Errors::InvalidSessionID
+          #   else
+          #     raise
+          #   end
+          # end
 
           Stealth::Logger.l(
             topic: "messagebird",
             message:
-              "Transmitting. Response: #{response.recipients["items"]}: " \
+              "Transmitting. Response: #{response.status}: " \
                 # "#{response.errors}"
           )
         end

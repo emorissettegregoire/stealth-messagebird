@@ -23,16 +23,13 @@ module Stealth
         end
 
         def process
-          binding.pry
           @service_message = ServiceMessage.new(service: 'messagebird')
-          # service_message.sender_id = params["message"]["from"]
-          service_message.sender_id = params["message"]["conversationId"]
-          # service_message.sender_id = params["conversation"]["contactId"]
-
-          service_message.message = params["message"]["content"]["text"]
-
-          # Do I need the timestamp?
-          # service_message.timestamp = params["message"]["createdDatetime"]
+          service_message.sender_id = params["contact"]["msisdn"]
+          service_message.message = params['message']['content']['text']
+          #TWILIO
+          # service_message.sender_id = params['From']
+          # service_message.target_id = params['To']
+          # service_message.message = params['Body']
 
           # It seems that it can not take several attachements for one
           # message
@@ -55,9 +52,7 @@ module Stealth
 
           service_message
         end
-
       end
-
     end
   end
 end

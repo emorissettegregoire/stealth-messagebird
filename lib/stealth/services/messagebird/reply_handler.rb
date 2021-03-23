@@ -17,7 +17,9 @@ module Stealth
         def text
           check_text_length
           # format_response({ body: reply['text'] })
-          format_response({ body: { type: "text", content: { text: reply["text"] }}})
+          # format_response({ body: { type: "text", content: { text: reply["text"] }}})
+          # format_response(type: "text", content: { text: reply["text"] })
+          format_response(type: "text", content: { text: reply["text"] })
         end
 
         def image
@@ -57,11 +59,9 @@ module Stealth
         end
 
         def format_response(response)
-          sender_info = { from: Stealth.config.messagebird.from_phone.to_s, to: recipient_id }
-
+          sender_info = { from: Stealth.config.messagebird.from_phone.to_s, to: recipient_id.to_s }
           response.merge(sender_info)
         end
-
       end
     end
   end
