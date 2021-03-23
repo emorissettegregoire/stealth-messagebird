@@ -39,8 +39,7 @@ module Stealth
 
           response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply)
           # Reply to a conversation
-          # response = messagebird_client.conversation_reply(reply)
-
+          # response = messagebird_client.conversation_reply("1bdccc16cb724a379c167f67b600156d", reply)
           # EXAMPLE OF ERROR MESSAGES IN TWILIO - NEED TO ADJUST FOR MESSAGEBIRD
           # begin
           #   response = twilio_client.messages.create(reply)

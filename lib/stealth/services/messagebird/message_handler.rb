@@ -19,13 +19,14 @@ module Stealth
             headers
           )
           # Relay our acceptance
-          [204, 'No Content']
+          [200, 'OK']
         end
 
         def process
           @service_message = ServiceMessage.new(service: 'messagebird')
           service_message.sender_id = params["contact"]["msisdn"]
           service_message.message = params['message']['content']['text']
+
           #TWILIO
           # service_message.sender_id = params['From']
           # service_message.target_id = params['To']
