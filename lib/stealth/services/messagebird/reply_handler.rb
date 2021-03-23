@@ -59,7 +59,7 @@ module Stealth
         end
 
         def format_response(response)
-          sender_info = { from: Stealth.config.messagebird.from_phone.to_s, to: recipient_id.to_s }
+          sender_info = { from: Stealth.config.messagebird.channel_id.to_s, to: recipient_id.to_s }
           response.merge(sender_info)
         end
       end
