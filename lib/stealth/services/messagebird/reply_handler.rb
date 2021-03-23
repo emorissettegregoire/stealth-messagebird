@@ -7,7 +7,6 @@ module Stealth
     module Messagebird
 
       class ReplyHandler < Stealth::Services::BaseReplyHandler
-
         attr_reader :recipient_id, :reply
         def initialize(recipient_id: nil, reply: nil)
           @recipient_id = recipient_id

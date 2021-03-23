@@ -24,7 +24,8 @@ module Stealth
 
         def process
           @service_message = ServiceMessage.new(service: 'messagebird')
-          service_message.sender_id = params["contact"]["msisdn"]
+          service_message.sender_id = params['contact']['msisdn']
+          service_message.target_id = params['message']['channelId']
           service_message.message = params['message']['content']['text']
 
           #TWILIO
@@ -46,10 +47,10 @@ module Stealth
           #   }
           # end
 
-          service_message.attachments << {
-            type: params["message"]["type"],
-            url: params["message"]["content"]
-          }
+          # service_message.attachments << {
+          #   type: params["message"]["type"],
+          #   url: params["message"]["content"]
+          # }
 
           service_message
         end
