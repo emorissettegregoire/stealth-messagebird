@@ -25,7 +25,6 @@ module Stealth
         end
 
         def process
-          binding.pry
           # receive webhooks for incoming messages only
           if params['message']['origin'] == "inbound"
             @service_message = ServiceMessage.new(service: 'messagebird')
