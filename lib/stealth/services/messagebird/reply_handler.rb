@@ -22,9 +22,7 @@ module Stealth
 
         def image
           check_text_length
-
-          format_response(type: 'image', content: { image: reply['image_url'] })
-
+          format_response(type: 'image', content: { image: { url: reply['image_url']} })
           # format_response({ body: reply['text'], media_url: reply['image_url'] })
         end
 
