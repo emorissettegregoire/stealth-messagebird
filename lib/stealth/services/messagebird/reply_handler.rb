@@ -5,7 +5,6 @@ require "json"
 module Stealth
   module Services
     module Messagebird
-
       class ReplyHandler < Stealth::Services::BaseReplyHandler
         attr_reader :recipient_id, :reply
         def initialize(recipient_id: nil, reply: nil)
@@ -18,25 +17,29 @@ module Stealth
           # format_response({ body: reply['text'] })
           # format_response({ body: { type: "text", content: { text: reply["text"] }}})
           # format_response(type: "text", content: { text: reply["text"] })
-          format_response(type: "text", content: { text: reply["text"] })
+          format_response(type: 'text', content: { text: reply['text'] })
         end
 
         def image
           check_text_length
 
-          format_response({ body: reply['text'], media_url: reply['image_url'] })
+          format_response(type: 'image', content: { image: reply['image_url'] })
+
+          # format_response({ body: reply['text'], media_url: reply['image_url'] })
         end
 
         def audio
           check_text_length
 
-          format_response({ body: reply['text'], media_url: reply['audio_url'] })
+          format_response(type: 'audio', content: { audio: reply['audio_url'] })
+          # format_response({ body: reply['text'], media_url: reply['audio_url'] })
         end
 
         def video
           check_text_length
 
-          format_response({ body: reply['text'], media_url: reply['video_url'] })
+          format_response(type: 'video', content: { video: reply['video_url'] })
+          # format_response({ body: reply['text'], media_url: reply['video_url'] })
         end
 
         def file

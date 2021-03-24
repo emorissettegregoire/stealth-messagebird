@@ -25,14 +25,46 @@ module Stealth
         end
 
         def process
+          binding.pry
           # receive webhooks for incoming messages only
           if params['message']['origin'] == "inbound"
             @service_message = ServiceMessage.new(service: 'messagebird')
             service_message.sender_id = params['contact']['msisdn'].to_s
             service_message.target_id = params['message']['channelId']
             service_message.message = params['message']['content']['text']
-            service_message
+
+            # attachment_count = params['message']['content'].to_i
+
+            # attachment_count.times do |i|
+            #   service_message.attachments << {
+            #     type: params['message']["content#{i}"],
+            #     url: params['message']['content']["url#{i}"]
+            #   }
           end
+
+          if params['message']['type'] == 'image'
+            service_message.attachments = [{
+              type: params['message']['type'],
+              url: params['message']['content']['image']['url']
+            }]
+          elsif params['message']['type'] == 'video'
+            service_message.attachments = [{
+              type: params['message']['type'],
+              url: params['message']['content']['video']['url']
+            }]
+          elsif params['message']['type'] == 'audio'
+            service_message.attachments = [{
+              type: params['message']['type'],
+              url: params['message']['content']['audio']['url']
+            }]
+          elsif params['message']['type'] == 'location'
+            service_message.location = [{
+              type: params['message']['type'],
+              location: params['message']['content']['location']
+            }]
+          end
+
+          service_message
 
           #TWILIO
           # service_message.sender_id = params['From']
