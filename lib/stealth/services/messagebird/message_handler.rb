@@ -10,6 +10,16 @@ module Stealth
         def initialize(params:, headers:)
           @params = params
           @headers = headers
+          contact_info
+        end
+
+        def contact_info
+          # I want to capture info from a contact
+          params['contact']['firstName']
+          params['contact']['lastName']
+          params['contact']['displayName']
+          params['contact']['createdDatetime']
+          params['contact']['id']
         end
 
         def coordinate
