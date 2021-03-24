@@ -13,17 +13,19 @@ module Stealth
         end
 
         def coordinate
-          Stealth::Services::HandleMessageJob.perform_async(
-            'messagebird',
-            params,
-            headers
-          )
+          if params['message']['origin'] == "inbound"
+            Stealth::Services::HandleMessageJob.perform_async(
+              'messagebird',
+              params,
+              headers
+            )
+          end
           # Relay our acceptance
           [200, 'OK']
         end
 
         def process
-          # webhook for incoming messages only
+          # receive webhooks for incoming messages only
           if params['message']['origin'] == "inbound"
             @service_message = ServiceMessage.new(service: 'messagebird')
             service_message.sender_id = params['contact']['msisdn'].to_s
