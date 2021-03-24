@@ -26,22 +26,27 @@ module Stealth
 
         def audio
           check_text_length
-
-          format_response(type: 'audio', content: { audio: reply['audio_url'] })
           # format_response({ body: reply['text'], media_url: reply['audio_url'] })
+          format_response(type: 'audio', content: { audio: { url: reply['audio_url']} })
         end
 
         def video
           check_text_length
 
-          format_response(type: 'video', content: { video: reply['video_url'] })
+          format_response(type: 'video', content: { video: { url: reply['video_url']} })
           # format_response({ body: reply['text'], media_url: reply['video_url'] })
         end
 
         def file
           check_text_length
+          # format_response({ body: reply['text'], media_url: reply['file_url'] })
+          format_response(type: 'file', content: { file: { url: reply['file_url']} })
+        end
 
-          format_response({ body: reply['text'], media_url: reply['file_url'] })
+        def location
+          check_text_length
+          # format_response({ body: reply['text'], media_url: reply['file_url'] })
+          format_response(type: 'location', content: { location: { latitude: reply['latitude'], longitude: reply['longitude'] } })
         end
 
         def delay
