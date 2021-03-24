@@ -23,10 +23,14 @@ module Stealth
         end
 
         def process
-          @service_message = ServiceMessage.new(service: 'messagebird')
-          service_message.sender_id = params['contact']['msisdn']
-          service_message.target_id = params['message']['channelId']
-          service_message.message = params['message']['content']['text']
+          # webhook for incoming messages only
+          if params['message']['origin'] == "inbound"
+            @service_message = ServiceMessage.new(service: 'messagebird')
+            service_message.sender_id = params['contact']['msisdn'].to_s
+            service_message.target_id = params['message']['channelId']
+            service_message.message = params['message']['content']['text']
+            service_message
+          end
 
           #TWILIO
           # service_message.sender_id = params['From']
@@ -51,8 +55,6 @@ module Stealth
           #   type: params["message"]["type"],
           #   url: params["message"]["content"]
           # }
-
-          service_message
         end
       end
     end
