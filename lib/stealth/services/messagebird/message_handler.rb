@@ -29,8 +29,8 @@ module Stealth
           @service_message = ServiceMessage.new(service: 'messagebird')
           service_message.sender_id = params['contact']['msisdn'].to_s
           service_message.target_id = params['message']['channelId']
+          service_message.timestamp = params['message']['createdDatetime']
           service_message.message = params['message']['content']['text']
-
           # attachment_count = params['message']['content'].to_i
 
           # attachment_count.times do |i|
