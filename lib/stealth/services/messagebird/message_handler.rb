@@ -13,7 +13,7 @@ module Stealth
         end
 
         def coordinate
-          if params['message']['origin'] == "inbound"
+          if params.dig('message', 'origin') == 'inbound'
             Stealth::Services::HandleMessageJob.perform_async(
               'messagebird',
               params,
@@ -26,20 +26,18 @@ module Stealth
 
         def process
           # receive webhooks for incoming messages only
-          if params['message']['origin'] == "inbound"
-            @service_message = ServiceMessage.new(service: 'messagebird')
-            service_message.sender_id = params['contact']['msisdn'].to_s
-            service_message.target_id = params['message']['channelId']
-            service_message.message = params['message']['content']['text']
+          @service_message = ServiceMessage.new(service: 'messagebird')
+          service_message.sender_id = params['contact']['msisdn'].to_s
+          service_message.target_id = params['message']['channelId']
+          service_message.message = params['message']['content']['text']
 
-            # attachment_count = params['message']['content'].to_i
+          # attachment_count = params['message']['content'].to_i
 
-            # attachment_count.times do |i|
-            #   service_message.attachments << {
-            #     type: params['message']["content#{i}"],
-            #     url: params['message']['content']["url#{i}"]
-            #   }
-          end
+          # attachment_count.times do |i|
+          #   service_message.attachments << {
+          #     type: params['message']["content#{i}"],
+          #     url: params['message']['content']["url#{i}"]
+          #   }
 
           if params['message']['type'] == 'image'
             service_message.attachments = [{
