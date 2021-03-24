@@ -56,6 +56,11 @@ module Stealth
               type: params['message']['type'],
               url: params['message']['content']['audio']['url']
             }]
+          elsif params['message']['type'] == 'file'
+            service_message.attachments = [{
+              type: params['message']['type'],
+              location: params['message']['content']['file']['url']
+            }]
           elsif params['message']['type'] == 'location'
             service_message.location = [{
               type: params['message']['type'],
