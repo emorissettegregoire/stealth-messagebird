@@ -21,26 +21,26 @@ module Stealth
         def image
           check_text_length
           # format_response({ body: reply['text'], media_url: reply['image_url'] })
-          format_response(type: 'image', content: { image: { url: reply['image_url']} })
+          format_response(type: 'image', content: { image: { caption: reply['text'], url: reply['image_url'] } })
         end
 
         def audio
           check_text_length
           # format_response({ body: reply['text'], media_url: reply['audio_url'] })
-          format_response(type: 'audio', content: { audio: { url: reply['audio_url']} })
+          format_response(type: 'audio', content: { audio: { caption: reply['text'], url: reply['audio_url'] } })
         end
 
         def video
           check_text_length
 
-          format_response(type: 'video', content: { video: { url: reply['video_url']} })
+          format_response(type: 'video', content: { video: { caption: reply['text'], url: reply['video_url'] } })
           # format_response({ body: reply['text'], media_url: reply['video_url'] })
         end
 
         def file
           check_text_length
           # format_response({ body: reply['text'], media_url: reply['file_url'] })
-          format_response(type: 'file', content: { file: { url: reply['file_url']} })
+          format_response(type: 'file', content: { file: { caption: reply['text'], url: reply['file_url'] } })
         end
 
         def location
