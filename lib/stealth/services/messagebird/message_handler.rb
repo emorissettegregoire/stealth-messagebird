@@ -15,11 +15,13 @@ module Stealth
 
         def contact_info
           # I want to capture info from a contact
-          params['contact']['firstName']
-          params['contact']['lastName']
-          params['contact']['displayName']
-          params['contact']['createdDatetime']
-          params['contact']['id']
+          @contact_info = {
+            display_name: params['contact']['displayName'],
+            first_name: params['contact']['firstName'],
+            last_name: params['contact']['lastName'],
+            create_date: params['contact']['createdDatetime'],
+            messagebird_id: params['contact']['id']
+          }
         end
 
         def coordinate
@@ -35,14 +37,12 @@ module Stealth
         end
 
         def process
-          # receive webhooks for incoming messages only
           @service_message = ServiceMessage.new(service: 'messagebird')
           service_message.sender_id = params['contact']['msisdn'].to_s
           service_message.target_id = params['message']['channelId']
           service_message.timestamp = params['message']['createdDatetime']
           service_message.message = params['message']['content']['text']
           # attachment_count = params['message']['content'].to_i
-
           # attachment_count.times do |i|
           #   service_message.attachments << {
           #     type: params['message']["content#{i}"],
