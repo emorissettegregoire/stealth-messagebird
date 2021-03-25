@@ -75,8 +75,6 @@ module Stealth
           #     raise
           #   end
           # end
-          binding.pry
-
           Stealth::Logger.l(
             topic: "messagebird",
             message:
