@@ -31,6 +31,8 @@ module Stealth
           service_message.target_id = params['message']['channelId']
           service_message.timestamp = params['message']['createdDatetime']
           service_message.message = params['message']['content']['text']
+          # service_message.messagebird_id = params['contact']['id']
+
           # attachment_count = params['message']['content'].to_i
           # attachment_count.times do |i|
           #   service_message.attachments << {

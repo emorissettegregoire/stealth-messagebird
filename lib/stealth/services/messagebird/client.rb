@@ -5,6 +5,7 @@ require 'json'
 require 'messagebird'
 
 require 'stealth/services/messagebird/message_handler'
+require 'stealth/services/messagebird/messagebird_service_message'
 require 'stealth/services/messagebird/reply_handler'
 require 'stealth/services/messagebird/setup'
 
