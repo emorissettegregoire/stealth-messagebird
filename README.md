@@ -1,4 +1,4 @@
-# Stealth Messagebird Driver for WhatsApp
+# Messagebird WhatsApp Driver for Stealth
 
 The [Stealth](https://github.com/hellostealth/stealth) Twilio SMS driver adds the ability to build your bot using Twilio's SMS service.
 
