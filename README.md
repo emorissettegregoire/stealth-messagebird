@@ -1,6 +1,6 @@
 # Messagebird WhatsApp Driver for Stealth
 
-The [Stealth](https://github.com/hellostealth/stealth) Twilio SMS driver adds the ability to build your bot using Twilio's SMS service.
+The [Stealth](https://github.com/hellostealth/stealth) WhatsApp driver adds the ability to build your bot using Messagebird service.
 
 [![Gem Version](https://badge.fury.io/rb/stealth-twilio.svg)](https://badge.fury.io/rb/stealth-twilio)
 
@@ -12,6 +12,7 @@ The [Stealth](https://github.com/hellostealth/stealth) Twilio SMS driver adds th
 * Video
 * File
 * Delay
+* Location
 
 Image, Audio, Video, and File reply types will leverage the MMS protocol. It is recommended by Twilio that
 the content is limited to images, however, this is the full list of supported content types: https://www.twilio.com/docs/api/messaging/accepted-mime-types.
