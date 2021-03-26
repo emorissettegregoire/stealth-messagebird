@@ -1,9 +1,5 @@
 # frozen_string_literal: true
-require 'pry'
-require 'json'
-
 require 'messagebird'
-
 require 'stealth/services/messagebird/message_handler'
 require 'stealth/services/messagebird/messagebird_service_message'
 require 'stealth/services/messagebird/reply_handler'
@@ -37,20 +33,22 @@ module Stealth
           return true if reply.blank?
           response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply)
 
-            # case e.message
-            # when /301/ # Message failed to send
-            #   raise Stealth::Errors::UserOptOut
-            # when /302/ # Contact is not registered on WhatsApp
-            #   raise Stealth::Errors::UserOptOut
-            # when /470/ # Outside the support window for freeform messages
-            #   raise Stealth::Errors::UserOptOut
-            # when /2/ # Request not allowed
-            #   raise Stealth::Errors::UserOptOut
-            # when /25/ # Not enough balance
-            #   raise Stealth::Errors::UserOptOut
-            # else
-            #   raise
-            # end
+          # if response.status == "failed" || response.status == "rejected"
+          #   case response.error.code
+          #   when /301/ # Message failed to send
+          #     raise Stealth::Errors::UserOptOut
+          #   when /302/ # Contact is not registered on WhatsApp
+          #     raise Stealth::Errors::UserOptOut
+          #   when /470/ # Outside the support window for freeform messages
+          #     raise Stealth::Errors::UserOptOut
+          #   when /2/ # Request not allowed
+          #     raise Stealth::Errors::UserOptOut
+          #   when /25/ # Not enough balance
+          #     raise Stealth::Errors::UserOptOut
+          #   else
+          #     raise
+          #   end
+          # end
 
           # Reply to a conversation
           # EXAMPLE OF ERROR MESSAGES IN TWILIO - NEED TO ADJUST FOR MESSAGEBIRD
@@ -80,8 +78,8 @@ module Stealth
             topic: "messagebird",
             message:
               "Transmitting. Response: #{response.status}: " \
-              # if response.errors.present?
-              #   "#{response.errors[].description}"
+              # if response.status == "failed" || response.status == "rejected"
+              #   "#{response.error.description}"
               # end
           )
         end

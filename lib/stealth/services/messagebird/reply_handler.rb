@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require "pry"
-require "json"
 
 module Stealth
   module Services
