@@ -6,7 +6,7 @@ module Stealth
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
         # ALPHA_ORDINALS = ('A'..'Z').to_a.freeze
-        ENUMERATED_LIST = (1..100).to_a.freeze
+        # ENUMERATED_LIST = (1..100).to_a.freeze
 
         attr_reader :recipient_id, :reply
 
@@ -32,7 +32,8 @@ module Stealth
             suggestions.each_with_index do |suggestion, i|
               translated_reply = [
                 translated_reply,
-                "\"#{ENUMERATED_LIST[i]}\" for #{suggestion}"
+                "\"#{i + 1}\" for #{suggestion}"
+                # "\"#{ENUMERATED_LIST[i]}\" for #{suggestion}"
               ].join("\n")
             end
           end
@@ -125,8 +126,6 @@ module Stealth
               "To #{button['text'].downcase}: Text #{button['payload'].upcase}"
             when 'call'
               "#{button['text']}: #{button['phone_number']}"
-            else # Don't raise for unsupported buttons
-              next
             end
           end.compact
 
