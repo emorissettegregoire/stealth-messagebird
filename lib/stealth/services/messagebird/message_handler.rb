@@ -26,13 +26,16 @@ module Stealth
         end
 
         def process
-          @service_message = ServiceMessage.new(service: 'messagebird')
+          @service_message = MessagebirdServiceMessage.new(service: 'messagebird')
           service_message.sender_id = params['contact']['msisdn'].to_s
           service_message.target_id = params['message']['channelId']
           service_message.timestamp = params['message']['createdDatetime']
           service_message.message = params['message']['content']['text']
-
-          # service_message.messagebird_id = params['contact']['id']
+          service_message.messagebird_id = params['contact']['id']
+          service_message.display_name = params['contact']['displayName']
+          service_message.first_name = params['contact']['firstName']
+          service_message.last_name = params['contact']['lastName']
+          service_message.platform = params['message']['platform']
 
           # attachment_count = params['message']['content'].to_i
           # attachment_count.times do |i|
