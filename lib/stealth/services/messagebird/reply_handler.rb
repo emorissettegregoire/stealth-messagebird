@@ -26,13 +26,13 @@ module Stealth
           if suggestions.present?
             translated_reply = [
               translated_reply,
-              'Reply with:'
+              'Responde con número:'
             ].join("\n\n")
 
             suggestions.each_with_index do |suggestion, i|
               translated_reply = [
                 translated_reply,
-                "\"#{i + 1}\" for #{suggestion}"
+                "#{i + 1} para #{suggestion}"
                 # "\"#{ENUMERATED_LIST[i]}\" for #{suggestion}"
               ].join("\n")
             end
@@ -123,7 +123,7 @@ module Stealth
             when 'url'
               "#{button['text']}: #{button['url']}"
             when 'payload'
-              "To #{button['text'].downcase}: Text #{button['payload'].upcase}"
+              "Para #{button['text'].downcase}: Texto #{button['payload'].upcase}"
             when 'call'
               "#{button['text']}: #{button['phone_number']}"
             end
