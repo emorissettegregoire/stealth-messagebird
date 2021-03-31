@@ -7,7 +7,7 @@ The [Stealth](https://github.com/hellostealth/stealth) WhatsApp driver adds the 
 * Text
 * Image
 * Audio
-* Video
+* Video/GIF (receive only)
 * File
 * Delay
 * Location
