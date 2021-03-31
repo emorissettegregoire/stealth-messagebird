@@ -51,12 +51,6 @@ module Stealth
           format_response(type: 'text', content: { text: translated_reply })
         end
 
-        # def text
-        #   check_text_length
-
-        #   format_response(type: 'text', content: { text: reply['text'] })
-        # end
-
         def image
           check_text_length
 

@@ -9,7 +9,6 @@ module Stealth
         def initialize(params:, headers:)
           @params = params
           @headers = headers
-          # contact_info
         end
 
         def coordinate
@@ -35,13 +34,6 @@ module Stealth
           service_message.first_name = params['contact']['firstName']
           service_message.last_name = params['contact']['lastName']
           service_message.platform = params['message']['platform']
-
-          # attachment_count = params['message']['content'].to_i
-          # attachment_count.times do |i|
-          #   service_message.attachments << {
-          #     type: params['message']["content#{i}"],
-          #     url: params['message']['content']["url#{i}"]
-          #   }
 
           if params['message']['type'] == 'image'
             service_message.attachments = [{
@@ -71,30 +63,6 @@ module Stealth
           end
 
           service_message
-
-          #TWILIO
-          # service_message.sender_id = params['From']
-          # service_message.target_id = params['To']
-          # service_message.message = params['Body']
-
-          # It seems that it can not take several attachements for one
-          # message
-
-          # Check for media attachments
-          #### Need to be changed for messagebird params
-          # attachment_count = params['NumMedia'].to_i
-
-          # attachment_count.times do |i|
-          #   service_message.attachments << {
-          #     type: params["MediaContentType#{i}"],
-          #     url: params["MediaUrl#{i}"]
-          #   }
-          # end
-
-          # service_message.attachments << {
-          #   type: params["message"]["type"],
-          #   url: params["message"]["content"]
-          # }
         end
       end
     end
