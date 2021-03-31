@@ -2,7 +2,7 @@
 
 The [Stealth](https://github.com/hellostealth/stealth) WhatsApp driver adds the ability to build your bot using Messagebird service.
 
-## Supported Reply Types
+## WhatsApp Supported Reply Types
 
 * Text
 * Image
