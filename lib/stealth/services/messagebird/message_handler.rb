@@ -12,7 +12,7 @@ module Stealth
         end
 
         def coordinate
-          if params.dig('message', 'origin') == 'inbound'
+          if params.dig('message', 'direction') == 'received'
             Stealth::Services::HandleMessageJob.perform_async(
               'messagebird',
               params,

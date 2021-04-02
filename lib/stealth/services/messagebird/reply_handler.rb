@@ -26,6 +26,10 @@ module Stealth
           if suggestions.present?
             translated_reply = [
               translated_reply,
+              # message = I18n.t(
+              #   "stealth.messagebird.respond_with_a_number",
+              #   default: "Respond with a number:"
+              # )
               'Responde con número:'
             ].join("\n\n")
 
