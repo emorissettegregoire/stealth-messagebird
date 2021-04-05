@@ -15,9 +15,9 @@ module Stealth
           @reply = reply
           access_key = Stealth.config.messagebird.access_key
           @messagebird_client = MessageBird::Client.new(access_key)
-          @messagebird_client.enable_feature(
-            MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
-          )
+          # @messagebird_client.enable_feature(
+          #   MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
+          # )
           # if api_key.present?
           #   @twilio_client = ::Twilio::REST::Client.new(
           #     api_key, auth_token, account_sid
