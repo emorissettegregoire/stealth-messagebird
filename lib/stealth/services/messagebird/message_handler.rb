@@ -25,8 +25,9 @@ module Stealth
 
         def process
           @service_message = MessagebirdServiceMessage.new(service: 'messagebird')
-          service_message.sender_id = params['contact']['msisdn'].to_s
+          service_message.sender_id = params['message']['conversationId']
           service_message.target_id = params['message']['channelId']
+          service_message.msisdn = params['contact']['msisdn'].to_s
           service_message.timestamp = params['message']['createdDatetime']
           service_message.message = params['message']['content']['text']
           service_message.messagebird_id = params['contact']['id']
