@@ -4,9 +4,6 @@ module Stealth
     module Messagebird
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
-        # ALPHA_ORDINALS = ('A'..'Z').to_a.freeze
-        # ENUMERATED_LIST = (1..100).to_a.freeze
-
         attr_reader :recipient_id, :reply
 
         def initialize(recipient_id: nil, reply: nil)
@@ -29,20 +26,16 @@ module Stealth
                 "stealth.messagebird.respond_with_a_number",
                 default: "Respond with a number:"
               )
-              # 'Responde con número:'
             ].join("\n\n")
 
             suggestions.each_with_index do |suggestion, i|
+              message = I18n.t(
+                "stealth.messagebird.for",
+                default: "for"
+              )
               translated_reply = [
                 translated_reply,
-
-                # message = I18n.t(
-                #   "stealth.messagebird.for",
-                #   default: "#{i + 1} for #{suggestion}"
-                # )
-
-                "#{i + 1} para #{suggestion}"
-                # "\"#{ENUMERATED_LIST[i]}\" for #{suggestion}"
+                "#{i + 1} #{message} #{suggestion}"
               ].join("\n")
             end
           end
@@ -126,7 +119,17 @@ module Stealth
             when 'url'
               "#{button['text']}: #{button['url']}"
             when 'payload'
-              "Para #{button['text'].downcase}: Texto #{button['payload'].upcase}"
+              message = I18n.t(
+                "stealth.messagebird.for",
+                default: "for"
+              )
+
+              text = I18n.t(
+                "stealth.messagebird.text",
+                default: "text"
+              )
+
+              "#{message.capitalize} #{button['text'].downcase}: #{text.capitalize} #{button['payload'].upcase}"
             when 'call'
               "#{button['text']}: #{button['phone_number']}"
             end
