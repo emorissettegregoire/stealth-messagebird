@@ -35,22 +35,22 @@ module Stealth
           # conversation_id = params['conversation']['id']
           # response = messagebird_client.conversation_reply(reply[:to], reply)
 
-          # if response.status == "failed" || response.status == "rejected"
-          #   case response.error.code
-          #   when /301/ # Message failed to send
-          #     raise Stealth::Errors::UserOptOut
-          #   when /302/ # Contact is not registered on WhatsApp
-          #     raise Stealth::Errors::UserOptOut
-          #   when /470/ # Outside the support window for freeform messages
-          #     raise Stealth::Errors::UserOptOut
-          #   when /2/ # Request not allowed
-          #     raise Stealth::Errors::UserOptOut
-          #   when /25/ # Not enough balance
-          #     raise Stealth::Errors::UserOptOut
-          #   else
-          #     raise
-          #   end
-          # end
+          if response.status == "failed" || response.status == "rejected"
+            case response.error.code
+            when /301/ # Message failed to send
+              raise Stealth::Errors::UserOptOut
+            when /302/ # Contact is not registered on WhatsApp
+              raise Stealth::Errors::UserOptOut
+            when /470/ # Outside the support window for freeform messages
+              raise Stealth::Errors::UserOptOut
+            when /2/ # Request not allowed
+              raise Stealth::Errors::UserOptOut
+            when /25/ # Not enough balance
+              raise Stealth::Errors::UserOptOut
+            else
+              raise
+            end
+          end
 
           # Reply to a conversation
           # EXAMPLE OF ERROR MESSAGES IN TWILIO - NEED TO ADJUST FOR MESSAGEBIRD
