@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module Stealth
   module Services
     module Messagebird
@@ -26,16 +25,22 @@ module Stealth
           if suggestions.present?
             translated_reply = [
               translated_reply,
-              # message = I18n.t(
-              #   "stealth.messagebird.respond_with_a_number",
-              #   default: "Respond with a number:"
-              # )
-              'Responde con número:'
+              message = I18n.t(
+                "stealth.messagebird.respond_with_a_number",
+                default: "Respond with a number:"
+              )
+              # 'Responde con número:'
             ].join("\n\n")
 
             suggestions.each_with_index do |suggestion, i|
               translated_reply = [
                 translated_reply,
+
+                # message = I18n.t(
+                #   "stealth.messagebird.for",
+                #   default: "#{i + 1} for #{suggestion}"
+                # )
+
                 "#{i + 1} para #{suggestion}"
                 # "\"#{ENUMERATED_LIST[i]}\" for #{suggestion}"
               ].join("\n")

@@ -76,14 +76,12 @@ module Stealth
           #     raise
           #   end
           # end
-          Stealth::Logger.l(
-            topic: "messagebird",
-            message:
-              "Transmitting. Response: #{response.status}: " \
-              # if response.status == "failed" || response.status == "rejected"
-              #   "#{response.error.description}"
-              # end
-          )
+
+          message = "Transmitting. Response: #{response.status}: "
+          if response.status == "failed" || response.status == "rejected"
+            message += response.error.description
+          end
+          Stealth::Logger.l(topic: "messagebird", message: message)
         end
       end
     end
