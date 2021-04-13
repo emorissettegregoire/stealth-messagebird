@@ -15,16 +15,6 @@ module Stealth
           @reply = reply
           access_key = Stealth.config.messagebird.access_key
           @messagebird_client = MessageBird::Client.new(access_key)
-          # @messagebird_client.enable_feature(
-          #   MessageBird::Client::CONVERSATIONS_WHATSAPP_SANDBOX_FEATURE
-          # )
-          # if api_key.present?
-          #   @twilio_client = ::Twilio::REST::Client.new(
-          #     api_key, auth_token, account_sid
-          #   )
-          # else
-          #   @twilio_client = ::Twilio::REST::Client.new(account_sid, auth_token)
-          # end
         end
 
         def transmit
@@ -32,8 +22,6 @@ module Stealth
           return true if reply.blank?
 
           response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply)
-          # conversation_id = params['conversation']['id']
-          # response = messagebird_client.conversation_reply(reply[:to], reply)
 
           if response.status == "failed" || response.status == "rejected"
             case response.error.code
@@ -51,31 +39,6 @@ module Stealth
               raise
             end
           end
-
-          # Reply to a conversation
-          # EXAMPLE OF ERROR MESSAGES IN TWILIO - NEED TO ADJUST FOR MESSAGEBIRD
-          # begin
-          #   response = twilio_client.messages.create(reply)
-          # rescue ::Twilio::REST::RestError => e
-          #   case e.message
-          #   when /21610/ # Attempt to send to unsubscribed recipient
-          #     raise Stealth::Errors::UserOptOut
-          #   when /21612/ # 'To' phone number is not currently reachable via SMS
-          #     raise Stealth::Errors::UserOptOut
-          #   when /21614/ # 'To' number is not a valid mobile number
-          #     raise Stealth::Errors::UserOptOut
-          #   when /30004/ # Message blocked
-          #     raise Stealth::Errors::UserOptOut
-          #   when /21211/ # Invalid 'To' Phone Number
-          #     raise Stealth::Errors::InvalidSessionID
-          #   when /30003/ # Unreachable destination handset
-          #     raise Stealth::Errors::InvalidSessionID
-          #   when /30005/ # Unknown destination handset
-          #     raise Stealth::Errors::InvalidSessionID
-          #   else
-          #     raise
-          #   end
-          # end
 
           message = "Transmitting. Response: #{response.status}: "
           if response.status == "failed" || response.status == "rejected"

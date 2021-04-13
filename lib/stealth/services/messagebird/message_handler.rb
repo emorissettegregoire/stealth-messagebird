@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module Stealth
   module Services
     module Messagebird
