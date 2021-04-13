@@ -31,9 +31,9 @@ module Stealth
           # Don't transmit anything for delays
           return true if reply.blank?
 
-          # response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply)
+          response = messagebird_client.send_conversation_message(reply[:from], reply[:to], reply)
           # conversation_id = params['conversation']['id']
-          response = messagebird_client.conversation_reply(reply[:to], reply)
+          # response = messagebird_client.conversation_reply(reply[:to], reply)
 
           # if response.status == "failed" || response.status == "rejected"
           #   case response.error.code
