@@ -25,15 +25,15 @@ module Stealth
 
           if response.status == "failed" || response.status == "rejected"
             case response.error.code
-            when /301/ # Message failed to send
+            when 301 # Message failed to send
               raise Stealth::Errors::UserOptOut
-            when /302/ # Contact is not registered on WhatsApp
+            when 302 # Contact is not registered on WhatsApp
               raise Stealth::Errors::UserOptOut
-            when /470/ # Outside the support window for freeform messages
+            when 470 # Outside the support window for freeform messages
               raise Stealth::Errors::UserOptOut
-            when /2/ # Request not allowed
+            when 2 # Request not allowed
               raise Stealth::Errors::UserOptOut
-            when /25/ # Not enough balance
+            when 25 # Not enough balance
               raise Stealth::Errors::UserOptOut
             else
               raise
