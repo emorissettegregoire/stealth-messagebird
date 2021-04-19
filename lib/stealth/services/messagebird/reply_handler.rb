@@ -22,7 +22,7 @@ module Stealth
           if suggestions.present?
             translated_reply = [
               translated_reply,
-              message = I18n.t(
+              I18n.t(
                 "stealth.messagebird.respond_with_a_number",
                 default: "Respond with a number:"
               )
@@ -119,21 +119,11 @@ module Stealth
             when 'url'
               "#{button['text']}: #{button['url']}"
             when 'payload'
-              message = I18n.t(
-                "stealth.messagebird.for",
-                default: "for"
-              )
-
-              text = I18n.t(
-                "stealth.messagebird.text",
-                default: "text"
-              )
-
               I18n.t(
                 "stealth.messagebird.text_option",
                 text: button['text'],
                 option: button['payload'],
-                default: "For %{text}: Text %{option}",
+                default: "For %{text}: Text %{option}"
               )
             when 'call'
               "#{button['text']}: #{button['phone_number']}"
