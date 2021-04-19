@@ -29,13 +29,14 @@ module Stealth
             ].join("\n\n")
 
             suggestions.each_with_index do |suggestion, i|
-              message = I18n.t(
-                "stealth.messagebird.for",
-                default: "for"
-              )
               translated_reply = [
                 translated_reply,
-                "#{i + 1} #{message} #{suggestion}"
+                I18n.t(
+                  "stealth.messagebird.number_option",
+                  number: i + 1,
+                  suggestion: suggestion,
+                  default: "%{number} for %{suggestion}"
+                )
               ].join("\n")
             end
           end
