@@ -129,7 +129,12 @@ module Stealth
                 default: "text"
               )
 
-              "#{message.capitalize} #{button['text'].downcase}: #{text.capitalize} #{button['payload'].upcase}"
+              I18n.t(
+                "stealth.messagebird.text_option",
+                text: button['text'],
+                option: button['payload'],
+                default: "For %{text}: Text %{option}",
+              )
             when 'call'
               "#{button['text']}: #{button['phone_number']}"
             end
