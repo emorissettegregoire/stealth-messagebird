@@ -56,7 +56,6 @@ module Stealth
 
         def image
           check_text_length
-
           format_response(type: 'image', content: { image: { caption: reply['text'], url: reply['image_url'] } })
         end
 
