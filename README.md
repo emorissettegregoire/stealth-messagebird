@@ -14,7 +14,15 @@ First thing first, create a Messagebird account and install your [WhatsApp Busin
 * Video/GIF (receive only)
 * File
 * Delay
+
 * Location
+
+In your replies files
+```
+- reply_type: location
+  latitude: 41.69352000000001
+  longitude: 44.801473999999985
+```
 
 More info here: https://developers.messagebird.com/quickstarts/whatsapp-deepdive/
 
