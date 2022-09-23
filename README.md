@@ -4,7 +4,12 @@ The [Stealth](https://github.com/hellostealth/stealth) WhatsApp driver adds the 
 
 Messagebird allow you to use your [own mobile number](https://support.messagebird.com/hc/en-us/articles/360000244558-How-to-pick-a-number-for-WhatsApp-Business) for WhatsApp. So no geographic restrictions compare to virtual mobile numbers (VMNs).
 
-First thing first, create a Messagebird account and install your [WhatsApp Business channel](https://support.messagebird.com/hc/en-us/articles/360000258437-WhatsApp-Business-step-by-step-onboarding). This gem is not supporting the Messagebird Sandbox, since their Sandbox has limitations.
+In `Gemfile`
+```
+gem 'stealth-messagebird'
+```
+
+Then create a Messagebird account and install your [WhatsApp Business channel](https://support.messagebird.com/hc/en-us/articles/360000258437-WhatsApp-Business-step-by-step-onboarding). This gem is not supporting the Messagebird Sandbox, since their Sandbox has limitations.
 
 ## WhatsApp Supported Reply Types
 
