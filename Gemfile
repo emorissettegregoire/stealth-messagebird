@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+
+gem 'stealth', '>= 2.0.0.beta'
+
 gemspec
 
-gem 'stealth', git: 'https://github.com/hellostealth/stealth', branch: 'master'
