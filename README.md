@@ -50,12 +50,12 @@ In your Stealth bot replies
   header_image_url: "https://your-image.jpg"
   header_text: "your text"
   buttons:
-    - button_title: "button 1"
-      button_payload: "button-1"
-    - button_title: "button 2"
-      button_payload: "button-2"
-    - button_title: "button 3"
-      button_payload: "button-3"
+    - title: "button 1"
+      payload: "button-1"
+    - title: "button 2"
+      payload: "button-2"
+    - title: "button 3"
+      payload: "button-3"
 ```
 
 More info here: https://developers.messagebird.com/quickstarts/whatsapp-deepdive/
