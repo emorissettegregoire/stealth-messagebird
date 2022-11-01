@@ -50,7 +50,6 @@ module Stealth
             end
           end
 
-          # format_response({ body: translated_reply })
           format_response(type: 'text', content: { text: translated_reply })
         end
 
@@ -87,6 +86,32 @@ module Stealth
           check_text_length
 
           format_response(type: 'whatsappSticker', content: { whatsappSticker: { link: reply['sticker_url'] } })
+        end
+
+        def quick_reply
+          check_text_length
+
+          format_response(
+            type: 'interactive',
+            content: {
+              interactive: {
+                type: 'button',
+                header: {
+                  type: 'image',
+                  image: {
+                    url: reply['header_image_url']
+                  }
+                },
+                body: {
+                  text: reply['header_text']
+                },
+                action: {
+                  buttons:
+                    generate_quick_replies(buttons: reply['buttons'])
+                }
+              }
+            }
+          )
         end
 
         def delay
@@ -138,6 +163,21 @@ module Stealth
 
           sms_buttons
         end
+
+        def generate_quick_replies(buttons:)
+          if buttons.size > 3
+            raise(ArgumentError, "WhatsApp quick reply message supports a maximum of 3 buttons. Use WhatsApp list instead.")
+          end
+
+          buttons.map do |button|
+            {
+              id: button['button_payload'],
+              type: 'reply',
+              title: button['button_title']
+            }
+          end
+        end
+
       end
     end
   end
