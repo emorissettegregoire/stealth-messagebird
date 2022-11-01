@@ -35,36 +35,40 @@ module Stealth
           service_message.last_name = params['contact']['lastName']
           service_message.platform = params['message']['platform']
 
-          if params['message']['type'] == 'image'
+          message_type = params['message']['type']
+          case message_type
+          when 'image'
             service_message.attachments = [{
-              type: params['message']['type'],
+              type: message_type,
               url: params['message']['content']['image']['url']
             }]
-          elsif params['message']['type'] == 'video'
+          when 'video'
             service_message.attachments = [{
-              type: params['message']['type'],
+              type: message_type,
               url: params['message']['content']['video']['url']
             }]
-          elsif params['message']['type'] == 'audio'
+          when 'audio'
             service_message.attachments = [{
-              type: params['message']['type'],
+              type: message_type,
               url: params['message']['content']['audio']['url']
             }]
-          elsif params['message']['type'] == 'file'
+          when 'file'
             service_message.attachments = [{
-              type: params['message']['type'],
+              type: message_type,
               location: params['message']['content']['file']['url']
             }]
-          elsif params['message']['type'] == 'whatsappSticker'
+          when 'whatsappSticker'
             service_message.attachments = [{
-              type: params['message']['type'],
+              type: message_type,
               url: params['message']['content']['whatsappSticker']['link']
             }]
-          elsif params['message']['type'] == 'location'
+          when 'location'
             service_message.location = [{
-              type: params['message']['type'],
+              type: message_type,
               location: params['message']['content']['location']
             }]
+          when 'interactive'
+            service_message.payload = params['message']['content']['interactive']['reply']['id']
           end
 
           service_message
