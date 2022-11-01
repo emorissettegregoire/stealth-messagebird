@@ -14,12 +14,16 @@ Then create a Messagebird account and install your [WhatsApp Business channel](h
 ## WhatsApp Supported Reply Types
 
 * Text
-* Image
-* Audio
-* Video/GIF (receive only)
-* File
-* Sticker
 
+* Image
+
+* Audio
+
+* Video/GIF (receive only)
+
+* File
+
+* Sticker
 In your Stealth bot replies
 ```
 - reply_type: sticker
@@ -29,12 +33,26 @@ In your Stealth bot replies
 * Delay
 
 * Location
-
 In your Stealth bot replies
 ```
 - reply_type: location
   latitude: 41.69352000000001
   longitude: 44.801473999999985
+```
+
+* Quick Reply (max 3 buttons)
+In your Stealth bot replies
+```
+- reply_type: quick_reply
+  header_image_url: "https://your-image.jpg"
+  header_text: "your text"
+  buttons:
+    - button_title: "button 1"
+      button_payload: "button-1"
+    - button_title: "button 2"
+      button_payload: "button-2"
+    - button_title: "button 3"
+      button_payload: "button-3"
 ```
 
 More info here: https://developers.messagebird.com/quickstarts/whatsapp-deepdive/
