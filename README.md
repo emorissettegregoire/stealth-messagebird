@@ -18,11 +18,19 @@ Then create a Messagebird account and install your [WhatsApp Business channel](h
 * Audio
 * Video/GIF (receive only)
 * File
+* Sticker
+
+In your Stealth bot replies
+```
+- reply_type: sticker
+  sticker_url: "https://your-sticker.webp"
+```
+
 * Delay
 
 * Location
 
-In your replies files
+In your Stealth bot replies
 ```
 - reply_type: location
   latitude: 41.69352000000001
