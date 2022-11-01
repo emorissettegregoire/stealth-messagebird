@@ -171,9 +171,9 @@ module Stealth
 
           buttons.map do |button|
             {
-              id: button['button_payload'],
+              id: button['payload'],
               type: 'reply',
-              title: button['button_title']
+              title: button['title']
             }
           end
         end
