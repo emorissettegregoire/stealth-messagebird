@@ -55,6 +55,11 @@ module Stealth
               type: params['message']['type'],
               location: params['message']['content']['file']['url']
             }]
+          elsif params['message']['type'] == 'whatsappSticker'
+            service_message.attachments = [{
+              type: params['message']['type'],
+              url: params['message']['content']['whatsappSticker']['link']
+            }]
           elsif params['message']['type'] == 'location'
             service_message.location = [{
               type: params['message']['type'],
