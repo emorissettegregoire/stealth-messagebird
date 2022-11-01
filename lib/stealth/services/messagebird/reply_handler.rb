@@ -83,6 +83,12 @@ module Stealth
           format_response(type: 'location', content: { location: { latitude: reply['latitude'], longitude: reply['longitude'] } })
         end
 
+        def sticker
+          check_text_length
+
+          format_response(type: 'whatsappSticker', content: { whatsappSticker: { link: reply['sticker_url'] } })
+        end
+
         def delay
 
         end
