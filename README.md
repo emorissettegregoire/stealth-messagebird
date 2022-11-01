@@ -24,6 +24,7 @@ Then create a Messagebird account and install your [WhatsApp Business channel](h
 * File
 
 * Sticker
+
 In your Stealth bot replies
 ```
 - reply_type: sticker
@@ -33,6 +34,7 @@ In your Stealth bot replies
 * Delay
 
 * Location
+
 In your Stealth bot replies
 ```
 - reply_type: location
@@ -41,6 +43,7 @@ In your Stealth bot replies
 ```
 
 * Quick Reply (max 3 buttons)
+
 In your Stealth bot replies
 ```
 - reply_type: quick_reply
