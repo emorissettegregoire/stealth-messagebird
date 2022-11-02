@@ -114,6 +114,30 @@ module Stealth
           )
         end
 
+        def list
+          check_text_length
+
+          format_response(
+            type: 'interactive',
+            content: {
+              interactive: {
+                type: 'list',
+                header: {
+                  type: 'text',
+                  text: reply['title']
+                },
+                body: {
+                  text: reply['text']
+                },
+                action: {
+                  button: reply['button'],
+                  sections: generate_sections(sections: reply['sections'])
+                }
+              }
+            }
+          )
+        end
+
         def delay
 
         end
@@ -173,6 +197,24 @@ module Stealth
             {
               id: button['payload'],
               type: 'reply',
+              title: button['title']
+            }
+          end
+        end
+
+        def generate_sections(sections:)
+          sections.map do |section|
+            {
+              title: section['title'],
+              rows: generate_list_of_buttons(buttons: reply['buttons'])
+            }
+          end
+        end
+
+        def generate_list_of_buttons(buttons:)
+          buttons.map do |button|
+            {
+              id: button['payload'],
               title: button['title']
             }
           end
