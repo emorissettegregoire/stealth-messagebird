@@ -207,14 +207,14 @@ module Stealth
         end
 
         def generate_sections(sections:)
+          check_number_of_list_buttons(sections)
+
           sections.map do |section|
             {
               title: section['title'],
               rows: generate_list_of_buttons(buttons: section['buttons'])
             }
           end
-
-          check_number_of_list_buttons(sections)
         end
 
         def generate_list_of_buttons(buttons:)
