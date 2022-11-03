@@ -190,10 +190,14 @@ module Stealth
 
         def generate_quick_replies(buttons:)
           if buttons.size > 3
-            raise(ArgumentError, "WhatsApp quick reply message supports a maximum of 3 buttons. Use WhatsApp list instead.")
+            raise(ArgumentError, "WhatsApp quick reply message supports up to 3 buttons. Use WhatsApp list instead.")
           end
 
           buttons.map do |button|
+            if button['title'].size > 20
+              raise(ArgumentError, "A button has a maximum of 20 characters.")
+            end
+
             {
               id: button['payload'],
               type: 'reply',
@@ -206,20 +210,43 @@ module Stealth
           sections.map do |section|
             {
               title: section['title'],
-              rows: generate_list_of_buttons(buttons: reply['buttons'])
+              rows: generate_list_of_buttons(buttons: section['buttons'])
             }
           end
+
+          check_number_of_list_buttons(sections)
         end
 
         def generate_list_of_buttons(buttons:)
           buttons.map do |button|
+            check_list_button_field_length(button: button['title'])
+            description = button['description'].present? ? button['description'] : nil
+
             {
               id: button['payload'],
-              title: button['title']
+              title: button['title'],
+              description: description
             }
           end
         end
 
+        def check_list_button_field_length(button:)
+          if button.size > 20
+            raise(ArgumentError, "Your button '#{button}' has a maximum of 20 characters.")
+          end
+        end
+
+        def check_number_of_list_buttons(sections)
+          buttons = sections.map do |section|
+            section["buttons"].size
+          end
+
+          total_buttons = buttons.sum
+
+          if total_buttons > 10
+            raise(ArgumentError, "WhatsApp list message supports up to 10 buttons.")
+          end
+        end
       end
     end
   end
