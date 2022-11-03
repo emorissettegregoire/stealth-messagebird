@@ -60,6 +60,7 @@ In your Stealth bot replies
 
 * List message (max 10 buttons)
 
+In your Stealth bot replies
 ```
 - reply_type: list
   title: "What would you like to buy today?"
