@@ -58,6 +58,27 @@ In your Stealth bot replies
       payload: "button-3"
 ```
 
+* List message (max 10 buttons)
+
+```
+- reply_type: list
+  title: "What would you like to buy today?"
+  text: "To begin, tap Main Menu and choose from one of the following options."
+  button: "Main Menu"
+  sections:
+    - title: "Bundles"
+      buttons:
+        - title: "Buy bundle 1"
+          payload: "bundle-1"
+        - title: "Buy bundle 2"
+          payload: "bundle-2"
+    - title: "Airtime"
+      buttons:
+        - title: "Buy Airtime"
+          payload: "airtime-1"
+          description: "optional description"
+```
+
 More info here: https://developers.messagebird.com/quickstarts/whatsapp-deepdive/
 
 ## Configure Messagebird with your Stealth bot
