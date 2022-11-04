@@ -91,7 +91,7 @@ module Stealth
         def quick_reply
           check_text_length
 
-          reply['type'].present? ? template_with_header : template
+          reply['header_url'].present? ? template_with_header : template
         end
 
         def template_with_header
@@ -101,9 +101,9 @@ module Stealth
               interactive: {
                 type: 'button',
                 header: {
-                  type: reply['type'],
-                  "#{reply['type']}": {
-                    url: reply['url']
+                  type: reply['header_type'],
+                  "#{reply['header_type']}": {
+                    url: reply['header_url']
                   }
                 },
                 body: {
@@ -124,6 +124,10 @@ module Stealth
             content: {
               interactive: {
                 type: 'button',
+                header: {
+                  type: reply['header_type'],
+                  text: reply['header_text']
+                },
                 body: {
                   text: reply['text']
                 },
