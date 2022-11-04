@@ -91,19 +91,41 @@ module Stealth
         def quick_reply
           check_text_length
 
+          reply['type'].present? ? template_with_header : template
+        end
+
+        def template_with_header
           format_response(
             type: 'interactive',
             content: {
               interactive: {
                 type: 'button',
                 header: {
-                  type: 'image',
-                  image: {
-                    url: reply['header_image_url']
+                  type: reply['type'],
+                  "#{reply['type']}": {
+                    url: reply['url']
                   }
                 },
                 body: {
-                  text: reply['header_text']
+                  text: reply['text']
+                },
+                action: {
+                  buttons:
+                    generate_quick_replies(buttons: reply['buttons'])
+                }
+              }
+            }
+          )
+        end
+
+        def template
+          format_response(
+            type: 'interactive',
+            content: {
+              interactive: {
+                type: 'button',
+                body: {
+                  text: reply['text']
                 },
                 action: {
                   buttons:

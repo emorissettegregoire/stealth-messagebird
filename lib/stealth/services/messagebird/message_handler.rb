@@ -36,6 +36,7 @@ module Stealth
           service_message.platform = params['message']['platform']
 
           message_type = params['message']['type']
+
           case message_type
           when 'image'
             service_message.attachments = [{
