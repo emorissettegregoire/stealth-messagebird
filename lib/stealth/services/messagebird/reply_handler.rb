@@ -50,7 +50,6 @@ module Stealth
             end
           end
 
-          # format_response({ body: translated_reply })
           format_response(type: 'text', content: { text: translated_reply })
         end
 
@@ -81,6 +80,88 @@ module Stealth
           check_text_length
 
           format_response(type: 'location', content: { location: { latitude: reply['latitude'], longitude: reply['longitude'] } })
+        end
+
+        def sticker
+          check_text_length
+
+          format_response(type: 'whatsappSticker', content: { whatsappSticker: { link: reply['sticker_url'] } })
+        end
+
+        def quick_reply
+          check_text_length
+
+          reply['header_url'].present? ? template_with_header : template
+        end
+
+        def template_with_header
+          format_response(
+            type: 'interactive',
+            content: {
+              interactive: {
+                type: 'button',
+                header: {
+                  type: reply['header_type'],
+                  "#{reply['header_type']}": {
+                    url: reply['header_url']
+                  }
+                },
+                body: {
+                  text: reply['text']
+                },
+                action: {
+                  buttons:
+                    generate_quick_replies(buttons: reply['buttons'])
+                }
+              }
+            }
+          )
+        end
+
+        def template
+          format_response(
+            type: 'interactive',
+            content: {
+              interactive: {
+                type: 'button',
+                header: {
+                  type: reply['header_type'],
+                  text: reply['header_text']
+                },
+                body: {
+                  text: reply['text']
+                },
+                action: {
+                  buttons:
+                    generate_quick_replies(buttons: reply['buttons'])
+                }
+              }
+            }
+          )
+        end
+
+        def list
+          check_text_length
+
+          format_response(
+            type: 'interactive',
+            content: {
+              interactive: {
+                type: 'list',
+                header: {
+                  type: 'text',
+                  text: reply['title']
+                },
+                body: {
+                  text: reply['text']
+                },
+                action: {
+                  button: reply['button'],
+                  sections: generate_sections(sections: reply['sections'])
+                }
+              }
+            }
+          )
         end
 
         def delay
@@ -131,6 +212,66 @@ module Stealth
           end.compact
 
           sms_buttons
+        end
+
+        def generate_quick_replies(buttons:)
+          if buttons.size > 3
+            raise(ArgumentError, "WhatsApp quick reply message supports up to 3 buttons. Use WhatsApp list instead.")
+          end
+
+          buttons.map do |button|
+            if button['title'].size > 20
+              raise(ArgumentError, "A button has a maximum of 20 characters.")
+            end
+
+            {
+              id: button['payload'],
+              type: 'reply',
+              title: button['title']
+            }
+          end
+        end
+
+        def generate_sections(sections:)
+          check_number_of_list_buttons(sections)
+
+          sections.map do |section|
+            {
+              title: section['title'],
+              rows: generate_list_of_buttons(buttons: section['buttons'])
+            }
+          end
+        end
+
+        def generate_list_of_buttons(buttons:)
+          buttons.map do |button|
+            check_list_button_field_length(button: button['title'])
+            description = button['description'].present? ? button['description'] : nil
+
+            {
+              id: button['payload'],
+              title: button['title'],
+              description: description
+            }
+          end
+        end
+
+        def check_list_button_field_length(button:)
+          if button.size > 20
+            raise(ArgumentError, "Your button '#{button}' has a maximum of 20 characters.")
+          end
+        end
+
+        def check_number_of_list_buttons(sections)
+          buttons = sections.map do |section|
+            section["buttons"].size
+          end
+
+          total_buttons = buttons.sum
+
+          if total_buttons > 10
+            raise(ArgumentError, "WhatsApp list message supports up to 10 buttons.")
+          end
         end
       end
     end
