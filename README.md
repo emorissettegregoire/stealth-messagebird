@@ -71,7 +71,8 @@ In your Stealth bot replies
       payload: "button-3"
 ```
 
-`type` can be an "image", "video", "document" or "text".
+`header_type` can be an "image", "video", "document" or "text".
+User's input can be retrieved in `current_message.payload`
 
 * List message (max 10 buttons)
 
@@ -94,6 +95,7 @@ In your Stealth bot replies
           payload: "airtime-1"
           description: "optional description"
 ```
+User's input can be retrieved in `current_message.payload`
 
 More info here: https://developers.messagebird.com/quickstarts/whatsapp-deepdive/
 
