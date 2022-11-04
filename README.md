@@ -47,8 +47,21 @@ In your Stealth bot replies
 In your Stealth bot replies
 ```
 - reply_type: quick_reply
-  header_image_url: "https://your-image.jpg"
-  header_text: "your text"
+  header_type: "image"
+  header_url: "https://image.png"
+  text: "Your text"
+  buttons:
+    - title: "button 1"
+      payload: "button-1"
+    - title: "button 2"
+      payload: "button-2"
+    - title: "button 3"
+      payload: "button-3"
+
+- reply_type: quick_reply
+  header_type: "text"
+  header_text: "Awesome text"
+  text: "More descriptive text"
   buttons:
     - title: "button 1"
       payload: "button-1"
@@ -57,6 +70,8 @@ In your Stealth bot replies
     - title: "button 3"
       payload: "button-3"
 ```
+
+`type` can be an "image", "video", "document" or "text".
 
 * List message (max 10 buttons)
 
